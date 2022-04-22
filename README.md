@@ -1,2 +1,2 @@
-# bnf-straddle-pj
-Codes to execute Bank Nifty short straddle
+# algo_trading
+Codes to execute Algorithmic trading through automated python codes

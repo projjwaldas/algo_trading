@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>NaiveTrader.bnf_short_straddle API documentation</title>
+<meta name="description" content="- Get BNF Straddle Orders, Positions &amp; PnL
+- Place intraday buy &amp; sell order for options
+- Place intraday SL order for options" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>NaiveTrader.bnf_short_straddle</code></h1>
+</header>
+<section id="section-intro">
+<ul>
+<li>Get BNF Straddle Orders, Positions &amp; PnL
+</li>
+<li>Place intraday buy &amp; sell order for options
+</li>
+<li>Place intraday SL order for options</li>
+</ul>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#!/usr/bin/env python
+# coding: utf-8
+&#34;&#34;&#34;
+- Get BNF Straddle Orders, Positions &amp; PnL  
+- Place intraday buy &amp; sell order for options  
+- Place intraday SL order for options 
+&#34;&#34;&#34;
+
+# Import Modules
+import pandas as pd, numpy as np
+from kiteconnect import KiteConnect
+import pyotp, time
+import datetime as dt
+
+from .kite import get_positions, get_orders
+
+
+def get_bnf_straddle_positions(kite):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+        kite: kite object
+    Returns
+    -------
+        pandas dataframe of Bank Nifty Options positions
+    &#34;&#34;&#34;
+    pos_df = get_positions(kite)
+    bnf_pos_df = pos_df[(pos_df[&#39;exchange&#39;] == &#39;NFO&#39;) &amp; (pos_df[&#39;tradingsymbol&#39;].str.startswith(&#39;BANKNIFTY&#39;))]
+    return(bnf_pos_df)
+
+
+def get_bnf_orders(kite):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+        kite: kite object
+    Returns
+    -------
+        pandas dataframe of Bank Nifty options orders
+    &#34;&#34;&#34;
+    orders_df = get_orders(kite)
+    bnf_orders_df = orders_df[(orders_df[&#39;exchange&#39;] == &#39;NFO&#39;) &amp; (orders_df[&#39;tradingsymbol&#39;].str.startswith(&#39;BANKNIFTY&#39;))]
+    return(bnf_orders_df)
+
+
+def get_bnf_straddle_holdings(kite):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+        kite: kite object
+    Returns
+    -------
+        pandas dataframe of Bank Nifty Holdings
+    &#34;&#34;&#34;
+    pos_df = get_bnf_straddle_positions(kite)
+    holding_df = pos_df[pos_df[&#39;buy_quantity&#39;] == 0]
+    return(holding_df)
+
+
+def calc_bnf_straddle_pnl(kite, pnl_fname):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+        kite: kite object
+    Returns
+    -------
+        pandas dataframe of Bank Nifty short straddle PnL
+    &#34;&#34;&#34;
+    # Get Today&#39;s Intraday Positions
+    bnf_pos_df = get_bnf_straddle_positions(kite)
+
+    # Calculate Charges
+    bnf_pos_df[&#39;brokerage&#39;] = 40
+    bnf_pos_df[&#39;stt&#39;] = bnf_pos_df[&#39;sell_value&#39;]*0.0005
+    bnf_pos_df[&#39;nse_charge&#39;] = bnf_pos_df[&#39;buy_value&#39;]*0.00053
+    bnf_pos_df[&#39;gst&#39;] = (bnf_pos_df[&#39;nse_charge&#39;]+bnf_pos_df[&#39;brokerage&#39;])*0.18
+    bnf_pos_df[&#39;sebi_charge&#39;] = (bnf_pos_df[&#39;buy_value&#39;]+bnf_pos_df[&#39;sell_value&#39;])*10/10000000
+    bnf_pos_df[&#39;stamp_charge&#39;] = bnf_pos_df[&#39;buy_value&#39;]*0.00003
+    bnf_pos_df[&#39;total_charge&#39;] = bnf_pos_df[[&#39;brokerage&#39;, &#39;stt&#39;, &#39;nse_charge&#39;, &#39;gst&#39;, &#39;sebi_charge&#39;, &#39;stamp_charge&#39;]].sum(axis=1)
+    bnf_pos_df[&#39;net_pnl&#39;] = bnf_pos_df[&#39;pnl&#39;] - bnf_pos_df[&#39;total_charge&#39;]
+
+    # Keep only Required Columns
+    keep_col_list = [&#39;tradingsymbol&#39;, &#39;instrument_token&#39;, &#39;pnl&#39;, &#39;buy_quantity&#39;, &#39;buy_price&#39;, &#39;buy_value&#39;, &#39;sell_quantity&#39;, &#39;sell_price&#39;, &#39;sell_value&#39;, &#39;total_charge&#39;, &#39;net_pnl&#39;]
+    bnf_pos_df = bnf_pos_df[keep_col_list]
+    bnf_pos_df[&#39;date&#39;] = dt.datetime.now().date()
+
+    # Save PnL Data
+    try:
+        pnl_df = pd.read_csv(pnl_fname)
+        pnl_df = pnl_df.append(bnf_pos_df)
+        pnl_df.to_csv(pnl_fname, index=False)
+    except:
+        bnf_pos_df.to_csv(pnl_fname, index=False)
+        
+    return(bnf_pos_df)
+
+
+def get_bnf_indices(kite):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+        kite: kite object
+    Returns
+    -------
+        returns Bank Nifty Index token
+    &#34;&#34;&#34;
+    # Get Bank Nifty Instrument
+    instruments_df = pd.DataFrame(kite.instruments(kite.EXCHANGE_NSE))
+    bnf_df = instruments_df[(instruments_df[&#39;tradingsymbol&#39;] == &#39;NIFTY BANK&#39;)]
+
+    # Get Token
+    bnf_token = bnf_df[&#39;instrument_token&#39;].values[0]
+    return(bnf_token)
+
+
+def get_bnf_fut(kite):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+        kite: kite object
+    Returns
+    -------
+        returns Bank Nifty Future with current month expiry token
+    &#34;&#34;&#34;
+    # Get All Instruments
+    instruments_df = pd.DataFrame(kite.instruments(exchange=kite.EXCHANGE_NFO))
+    instruments_df[&#39;expiry&#39;] = pd.to_datetime(instruments_df[&#39;expiry&#39;], format=&#39;%Y-%m-%d&#39;)
+
+    # Get All Banknifty Future Instruments
+    bnf_instruments_df = instruments_df[(instruments_df[&#39;name&#39;].str.contains(&#39;BANKNIFTY&#39;))]
+    fut_instruments_df = bnf_instruments_df[(bnf_instruments_df[&#39;segment&#39;].isin([&#39;NFO-FUT&#39;]))]
+    bnf_fut_df = fut_instruments_df[fut_instruments_df[&#39;expiry&#39;] == min(fut_instruments_df[&#39;expiry&#39;])]
+    bnf_fut_token = bnf_fut_df[&#39;instrument_token&#39;].values[0]
+    return(bnf_fut_token)
+
+def get_bnf_token(kite, index):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+        kite: kite object
+        index: str, whether bank nifty straddle will be based on Options or Futures
+    Returns
+    -------
+        returns token of the Bank Nifty spot ATM
+    &#34;&#34;&#34;
+    if index == &#39;OPT&#39;:
+        return(get_bnf_indices(kite))
+    elif index == &#39;FUT&#39;:
+        return(get_bnf_fut(kite))
+    
+    
+def get_bnf_token_prc(kite, spot_prc):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+        kite: kite object
+    Returns
+    -------
+        Identifies the BNF ATM price, and the token &amp; prices of the BNF CE/ PE ATM
+    &#34;&#34;&#34;
+    # Get All Banknifty Option Weekly Expiry Instruments
+    instruments_df = pd.DataFrame(kite.instruments(exchange=kite.EXCHANGE_NFO))
+    instruments_df[&#39;expiry&#39;] = pd.to_datetime(instruments_df[&#39;expiry&#39;], format=&#39;%Y-%m-%d&#39;)
+
+    opt_instruments_df = instruments_df[(instruments_df[&#39;name&#39;].str.contains(&#39;BANKNIFTY&#39;)) &amp; (instruments_df[&#39;segment&#39;] == &#39;NFO-OPT&#39;)]
+    bnf_option_weekly_expiry_df = opt_instruments_df[opt_instruments_df[&#39;expiry&#39;] == min(opt_instruments_df[&#39;expiry&#39;])]
+
+    # Identify ATM Price
+    strike_list = list(bnf_option_weekly_expiry_df[&#39;strike&#39;].drop_duplicates())
+    atm_price = min(strike_list, key=lambda u:abs(u-spot_prc))
+    bnf_option_atm_df = bnf_option_weekly_expiry_df[bnf_option_weekly_expiry_df[&#39;strike&#39;] == atm_price]
+
+    return(atm_price, bnf_option_atm_df)
+
+
+# Place an intraday Buy Order on NSE Options
+def ExitStradleOrder(kite, symbol, quantity):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+        kite: kite object
+        symbol: str, symbol of options instrument
+        quantity: int, quantity of stock in units
+    Returns
+    -------
+        places intraday buy order for options instrument on Zerodha Kite
+    &#34;&#34;&#34;
+    kite.place_order(tradingsymbol=symbol,
+        exchange=kite.EXCHANGE_NFO,
+        transaction_type=kite.TRANSACTION_TYPE_BUY,
+        quantity=quantity,
+        order_type=kite.ORDER_TYPE_MARKET,
+        product=kite.PRODUCT_MIS,
+        variety=kite.VARIETY_REGULAR)
+
+# Place an Intraday Sell Order on NSE Options
+def PlaceStradleOrder(kite, symbol, quantity):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+        kite: kite object
+        symbol: str, symbol of options instrument
+        quantity: int, quantity of stocks in units
+    Returns
+    -------
+        places intraday sell order for options instrument on Zerodha Kite
+    &#34;&#34;&#34;
+    kite.place_order(tradingsymbol=symbol,
+            exchange=kite.EXCHANGE_NFO,
+            transaction_type=kite.TRANSACTION_TYPE_SELL,
+            quantity=quantity,
+            order_type=kite.ORDER_TYPE_MARKET,
+            product=kite.PRODUCT_MIS,
+            variety=kite.VARIETY_REGULAR)
+
+
+# Place an intraday Stop loss order on NSE Options
+def placeSLOrder(kite, symbol, buy_sell, quantity, sl_price):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+        kite: kite object
+        symbol: str, symbol of options instrument
+        buy_sell: str, indicator whether buy or sell order
+        quantity: int, quantity of stocks in units
+        sl_price: float, SL price
+    Returns
+    -------
+        places intraday SL order for options instrument on Zerodha Kite based on transaction type (buy/ sell)
+    &#34;&#34;&#34;
+    if buy_sell == &#34;buy&#34;:
+        t_type=kite.TRANSACTION_TYPE_BUY
+        t_type_sl=kite.TRANSACTION_TYPE_SELL
+    elif buy_sell == &#34;sell&#34;:
+        t_type=kite.TRANSACTION_TYPE_SELL
+        t_type_sl=kite.TRANSACTION_TYPE_BUY
+    kite.place_order(tradingsymbol=symbol,
+            exchange=kite.EXCHANGE_NFO,
+            transaction_type=t_type,
+            quantity=quantity,
+            order_type=kite.ORDER_TYPE_MARKET,
+            product=kite.PRODUCT_MIS,
+            variety=kite.VARIETY_REGULAR)
+    kite.place_order(tradingsymbol=symbol,
+            exchange=kite.EXCHANGE_NFO,
+            transaction_type=t_type_sl,
+            quantity=quantity,
+            order_type=kite.ORDER_TYPE_SL,
+            price=sl_price,
+            trigger_price = sl_price,
+            product=kite.PRODUCT_MIS,
+            variety=kite.VARIETY_REGULAR)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="NaiveTrader.bnf_short_straddle.ExitStradleOrder"><code class="name flex">
+<span>def <span class="ident">ExitStradleOrder</span></span>(<span>kite, symbol, quantity)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<pre><code>kite: kite object
+symbol: str, symbol of options instrument
+quantity: int, quantity of stock in units
+</code></pre>
+<h2 id="returns">Returns</h2>
+<pre><code>places intraday buy order for options instrument on Zerodha Kite
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ExitStradleOrder(kite, symbol, quantity):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+        kite: kite object
+        symbol: str, symbol of options instrument
+        quantity: int, quantity of stock in units
+    Returns
+    -------
+        places intraday buy order for options instrument on Zerodha Kite
+    &#34;&#34;&#34;
+    kite.place_order(tradingsymbol=symbol,
+        exchange=kite.EXCHANGE_NFO,
+        transaction_type=kite.TRANSACTION_TYPE_BUY,
+        quantity=quantity,
+        order_type=kite.ORDER_TYPE_MARKET,
+        product=kite.PRODUCT_MIS,
+        variety=kite.VARIETY_REGULAR)</code></pre>
+</details>
+</dd>
+<dt id="NaiveTrader.bnf_short_straddle.PlaceStradleOrder"><code class="name flex">
+<span>def <span class="ident">PlaceStradleOrder</span></span>(<span>kite, symbol, quantity)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<pre><code>kite: kite object
+symbol: str, symbol of options instrument
+quantity: int, quantity of stocks in units
+</code></pre>
+<h2 id="returns">Returns</h2>
+<pre><code>places intraday sell order for options instrument on Zerodha Kite
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def PlaceStradleOrder(kite, symbol, quantity):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+        kite: kite object
+        symbol: str, symbol of options instrument
+        quantity: int, quantity of stocks in units
+    Returns
+    -------
+        places intraday sell order for options instrument on Zerodha Kite
+    &#34;&#34;&#34;
+    kite.place_order(tradingsymbol=symbol,
+            exchange=kite.EXCHANGE_NFO,
+            transaction_type=kite.TRANSACTION_TYPE_SELL,
+            quantity=quantity,
+            order_type=kite.ORDER_TYPE_MARKET,
+            product=kite.PRODUCT_MIS,
+            variety=kite.VARIETY_REGULAR)</code></pre>
+</details>
+</dd>
+<dt id="NaiveTrader.bnf_short_straddle.calc_bnf_straddle_pnl"><code class="name flex">
+<span>def <span class="ident">calc_bnf_straddle_pnl</span></span>(<span>kite, pnl_fname)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<pre><code>kite: kite object
+</code></pre>
+<h2 id="returns">Returns</h2>
+<pre><code>pandas dataframe of Bank Nifty short straddle PnL
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def calc_bnf_straddle_pnl(kite, pnl_fname):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+        kite: kite object
+    Returns
+    -------
+        pandas dataframe of Bank Nifty short straddle PnL
+    &#34;&#34;&#34;
+    # Get Today&#39;s Intraday Positions
+    bnf_pos_df = get_bnf_straddle_positions(kite)
+
+    # Calculate Charges
+    bnf_pos_df[&#39;brokerage&#39;] = 40
+    bnf_pos_df[&#39;stt&#39;] = bnf_pos_df[&#39;sell_value&#39;]*0.0005
+    bnf_pos_df[&#39;nse_charge&#39;] = bnf_pos_df[&#39;buy_value&#39;]*0.00053
+    bnf_pos_df[&#39;gst&#39;] = (bnf_pos_df[&#39;nse_charge&#39;]+bnf_pos_df[&#39;brokerage&#39;])*0.18
+    bnf_pos_df[&#39;sebi_charge&#39;] = (bnf_pos_df[&#39;buy_value&#39;]+bnf_pos_df[&#39;sell_value&#39;])*10/10000000
+    bnf_pos_df[&#39;stamp_charge&#39;] = bnf_pos_df[&#39;buy_value&#39;]*0.00003
+    bnf_pos_df[&#39;total_charge&#39;] = bnf_pos_df[[&#39;brokerage&#39;, &#39;stt&#39;, &#39;nse_charge&#39;, &#39;gst&#39;, &#39;sebi_charge&#39;, &#39;stamp_charge&#39;]].sum(axis=1)
+    bnf_pos_df[&#39;net_pnl&#39;] = bnf_pos_df[&#39;pnl&#39;] - bnf_pos_df[&#39;total_charge&#39;]
+
+    # Keep only Required Columns
+    keep_col_list = [&#39;tradingsymbol&#39;, &#39;instrument_token&#39;, &#39;pnl&#39;, &#39;buy_quantity&#39;, &#39;buy_price&#39;, &#39;buy_value&#39;, &#39;sell_quantity&#39;, &#39;sell_price&#39;, &#39;sell_value&#39;, &#39;total_charge&#39;, &#39;net_pnl&#39;]
+    bnf_pos_df = bnf_pos_df[keep_col_list]
+    bnf_pos_df[&#39;date&#39;] = dt.datetime.now().date()
+
+    # Save PnL Data
+    try:
+        pnl_df = pd.read_csv(pnl_fname)
+        pnl_df = pnl_df.append(bnf_pos_df)
+        pnl_df.to_csv(pnl_fname, index=False)
+    except:
+        bnf_pos_df.to_csv(pnl_fname, index=False)
+        
+    return(bnf_pos_df)</code></pre>
+</details>
+</dd>
+<dt id="NaiveTrader.bnf_short_straddle.get_bnf_fut"><code class="name flex">
+<span>def <span class="ident">get_bnf_fut</span></span>(<span>kite)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<pre><code>kite: kite object
+</code></pre>
+<h2 id="returns">Returns</h2>
+<pre><code>returns Bank Nifty Future with current month expiry token
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_bnf_fut(kite):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+        kite: kite object
+    Returns
+    -------
+        returns Bank Nifty Future with current month expiry token
+    &#34;&#34;&#34;
+    # Get All Instruments
+    instruments_df = pd.DataFrame(kite.instruments(exchange=kite.EXCHANGE_NFO))
+    instruments_df[&#39;expiry&#39;] = pd.to_datetime(instruments_df[&#39;expiry&#39;], format=&#39;%Y-%m-%d&#39;)
+
+    # Get All Banknifty Future Instruments
+    bnf_instruments_df = instruments_df[(instruments_df[&#39;name&#39;].str.contains(&#39;BANKNIFTY&#39;))]
+    fut_instruments_df = bnf_instruments_df[(bnf_instruments_df[&#39;segment&#39;].isin([&#39;NFO-FUT&#39;]))]
+    bnf_fut_df = fut_instruments_df[fut_instruments_df[&#39;expiry&#39;] == min(fut_instruments_df[&#39;expiry&#39;])]
+    bnf_fut_token = bnf_fut_df[&#39;instrument_token&#39;].values[0]
+    return(bnf_fut_token)</code></pre>
+</details>
+</dd>
+<dt id="NaiveTrader.bnf_short_straddle.get_bnf_indices"><code class="name flex">
+<span>def <span class="ident">get_bnf_indices</span></span>(<span>kite)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<pre><code>kite: kite object
+</code></pre>
+<h2 id="returns">Returns</h2>
+<pre><code>returns Bank Nifty Index token
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_bnf_indices(kite):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+        kite: kite object
+    Returns
+    -------
+        returns Bank Nifty Index token
+    &#34;&#34;&#34;
+    # Get Bank Nifty Instrument
+    instruments_df = pd.DataFrame(kite.instruments(kite.EXCHANGE_NSE))
+    bnf_df = instruments_df[(instruments_df[&#39;tradingsymbol&#39;] == &#39;NIFTY BANK&#39;)]
+
+    # Get Token
+    bnf_token = bnf_df[&#39;instrument_token&#39;].values[0]
+    return(bnf_token)</code></pre>
+</details>
+</dd>
+<dt id="NaiveTrader.bnf_short_straddle.get_bnf_orders"><code class="name flex">
+<span>def <span class="ident">get_bnf_orders</span></span>(<span>kite)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<pre><code>kite: kite object
+</code></pre>
+<h2 id="returns">Returns</h2>
+<pre><code>pandas dataframe of Bank Nifty options orders
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_bnf_orders(kite):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+        kite: kite object
+    Returns
+    -------
+        pandas dataframe of Bank Nifty options orders
+    &#34;&#34;&#34;
+    orders_df = get_orders(kite)
+    bnf_orders_df = orders_df[(orders_df[&#39;exchange&#39;] == &#39;NFO&#39;) &amp; (orders_df[&#39;tradingsymbol&#39;].str.startswith(&#39;BANKNIFTY&#39;))]
+    return(bnf_orders_df)</code></pre>
+</details>
+</dd>
+<dt id="NaiveTrader.bnf_short_straddle.get_bnf_straddle_holdings"><code class="name flex">
+<span>def <span class="ident">get_bnf_straddle_holdings</span></span>(<span>kite)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<pre><code>kite: kite object
+</code></pre>
+<h2 id="returns">Returns</h2>
+<pre><code>pandas dataframe of Bank Nifty Holdings
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_bnf_straddle_holdings(kite):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+        kite: kite object
+    Returns
+    -------
+        pandas dataframe of Bank Nifty Holdings
+    &#34;&#34;&#34;
+    pos_df = get_bnf_straddle_positions(kite)
+    holding_df = pos_df[pos_df[&#39;buy_quantity&#39;] == 0]
+    return(holding_df)</code></pre>
+</details>
+</dd>
+<dt id="NaiveTrader.bnf_short_straddle.get_bnf_straddle_positions"><code class="name flex">
+<span>def <span class="ident">get_bnf_straddle_positions</span></span>(<span>kite)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<pre><code>kite: kite object
+</code></pre>
+<h2 id="returns">Returns</h2>
+<pre><code>pandas dataframe of Bank Nifty Options positions
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_bnf_straddle_positions(kite):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+        kite: kite object
+    Returns
+    -------
+        pandas dataframe of Bank Nifty Options positions
+    &#34;&#34;&#34;
+    pos_df = get_positions(kite)
+    bnf_pos_df = pos_df[(pos_df[&#39;exchange&#39;] == &#39;NFO&#39;) &amp; (pos_df[&#39;tradingsymbol&#39;].str.startswith(&#39;BANKNIFTY&#39;))]
+    return(bnf_pos_df)</code></pre>
+</details>
+</dd>
+<dt id="NaiveTrader.bnf_short_straddle.get_bnf_token"><code class="name flex">
+<span>def <span class="ident">get_bnf_token</span></span>(<span>kite, index)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<pre><code>kite: kite object
+index: str, whether bank nifty straddle will be based on Options or Futures
+</code></pre>
+<h2 id="returns">Returns</h2>
+<pre><code>returns token of the Bank Nifty spot ATM
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_bnf_token(kite, index):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+        kite: kite object
+        index: str, whether bank nifty straddle will be based on Options or Futures
+    Returns
+    -------
+        returns token of the Bank Nifty spot ATM
+    &#34;&#34;&#34;
+    if index == &#39;OPT&#39;:
+        return(get_bnf_indices(kite))
+    elif index == &#39;FUT&#39;:
+        return(get_bnf_fut(kite))</code></pre>
+</details>
+</dd>
+<dt id="NaiveTrader.bnf_short_straddle.get_bnf_token_prc"><code class="name flex">
+<span>def <span class="ident">get_bnf_token_prc</span></span>(<span>kite, spot_prc)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<pre><code>kite: kite object
+</code></pre>
+<h2 id="returns">Returns</h2>
+<pre><code>Identifies the BNF ATM price, and the token &amp; prices of the BNF CE/ PE ATM
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_bnf_token_prc(kite, spot_prc):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+        kite: kite object
+    Returns
+    -------
+        Identifies the BNF ATM price, and the token &amp; prices of the BNF CE/ PE ATM
+    &#34;&#34;&#34;
+    # Get All Banknifty Option Weekly Expiry Instruments
+    instruments_df = pd.DataFrame(kite.instruments(exchange=kite.EXCHANGE_NFO))
+    instruments_df[&#39;expiry&#39;] = pd.to_datetime(instruments_df[&#39;expiry&#39;], format=&#39;%Y-%m-%d&#39;)
+
+    opt_instruments_df = instruments_df[(instruments_df[&#39;name&#39;].str.contains(&#39;BANKNIFTY&#39;)) &amp; (instruments_df[&#39;segment&#39;] == &#39;NFO-OPT&#39;)]
+    bnf_option_weekly_expiry_df = opt_instruments_df[opt_instruments_df[&#39;expiry&#39;] == min(opt_instruments_df[&#39;expiry&#39;])]
+
+    # Identify ATM Price
+    strike_list = list(bnf_option_weekly_expiry_df[&#39;strike&#39;].drop_duplicates())
+    atm_price = min(strike_list, key=lambda u:abs(u-spot_prc))
+    bnf_option_atm_df = bnf_option_weekly_expiry_df[bnf_option_weekly_expiry_df[&#39;strike&#39;] == atm_price]
+
+    return(atm_price, bnf_option_atm_df)</code></pre>
+</details>
+</dd>
+<dt id="NaiveTrader.bnf_short_straddle.placeSLOrder"><code class="name flex">
+<span>def <span class="ident">placeSLOrder</span></span>(<span>kite, symbol, buy_sell, quantity, sl_price)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<pre><code>kite: kite object
+symbol: str, symbol of options instrument
+buy_sell: str, indicator whether buy or sell order
+quantity: int, quantity of stocks in units
+sl_price: float, SL price
+</code></pre>
+<h2 id="returns">Returns</h2>
+<pre><code>places intraday SL order for options instrument on Zerodha Kite based on transaction type (buy/ sell)
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def placeSLOrder(kite, symbol, buy_sell, quantity, sl_price):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+        kite: kite object
+        symbol: str, symbol of options instrument
+        buy_sell: str, indicator whether buy or sell order
+        quantity: int, quantity of stocks in units
+        sl_price: float, SL price
+    Returns
+    -------
+        places intraday SL order for options instrument on Zerodha Kite based on transaction type (buy/ sell)
+    &#34;&#34;&#34;
+    if buy_sell == &#34;buy&#34;:
+        t_type=kite.TRANSACTION_TYPE_BUY
+        t_type_sl=kite.TRANSACTION_TYPE_SELL
+    elif buy_sell == &#34;sell&#34;:
+        t_type=kite.TRANSACTION_TYPE_SELL
+        t_type_sl=kite.TRANSACTION_TYPE_BUY
+    kite.place_order(tradingsymbol=symbol,
+            exchange=kite.EXCHANGE_NFO,
+            transaction_type=t_type,
+            quantity=quantity,
+            order_type=kite.ORDER_TYPE_MARKET,
+            product=kite.PRODUCT_MIS,
+            variety=kite.VARIETY_REGULAR)
+    kite.place_order(tradingsymbol=symbol,
+            exchange=kite.EXCHANGE_NFO,
+            transaction_type=t_type_sl,
+            quantity=quantity,
+            order_type=kite.ORDER_TYPE_SL,
+            price=sl_price,
+            trigger_price = sl_price,
+            product=kite.PRODUCT_MIS,
+            variety=kite.VARIETY_REGULAR)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="NaiveTrader" href="index.html">NaiveTrader</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="NaiveTrader.bnf_short_straddle.ExitStradleOrder" href="#NaiveTrader.bnf_short_straddle.ExitStradleOrder">ExitStradleOrder</a></code></li>
+<li><code><a title="NaiveTrader.bnf_short_straddle.PlaceStradleOrder" href="#NaiveTrader.bnf_short_straddle.PlaceStradleOrder">PlaceStradleOrder</a></code></li>
+<li><code><a title="NaiveTrader.bnf_short_straddle.calc_bnf_straddle_pnl" href="#NaiveTrader.bnf_short_straddle.calc_bnf_straddle_pnl">calc_bnf_straddle_pnl</a></code></li>
+<li><code><a title="NaiveTrader.bnf_short_straddle.get_bnf_fut" href="#NaiveTrader.bnf_short_straddle.get_bnf_fut">get_bnf_fut</a></code></li>
+<li><code><a title="NaiveTrader.bnf_short_straddle.get_bnf_indices" href="#NaiveTrader.bnf_short_straddle.get_bnf_indices">get_bnf_indices</a></code></li>
+<li><code><a title="NaiveTrader.bnf_short_straddle.get_bnf_orders" href="#NaiveTrader.bnf_short_straddle.get_bnf_orders">get_bnf_orders</a></code></li>
+<li><code><a title="NaiveTrader.bnf_short_straddle.get_bnf_straddle_holdings" href="#NaiveTrader.bnf_short_straddle.get_bnf_straddle_holdings">get_bnf_straddle_holdings</a></code></li>
+<li><code><a title="NaiveTrader.bnf_short_straddle.get_bnf_straddle_positions" href="#NaiveTrader.bnf_short_straddle.get_bnf_straddle_positions">get_bnf_straddle_positions</a></code></li>
+<li><code><a title="NaiveTrader.bnf_short_straddle.get_bnf_token" href="#NaiveTrader.bnf_short_straddle.get_bnf_token">get_bnf_token</a></code></li>
+<li><code><a title="NaiveTrader.bnf_short_straddle.get_bnf_token_prc" href="#NaiveTrader.bnf_short_straddle.get_bnf_token_prc">get_bnf_token_prc</a></code></li>
+<li><code><a title="NaiveTrader.bnf_short_straddle.placeSLOrder" href="#NaiveTrader.bnf_short_straddle.placeSLOrder">placeSLOrder</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

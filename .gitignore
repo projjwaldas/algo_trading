@@ -1,0 +1,10 @@
+__pycache__
+auth/data/*.txt
+auth/data/*.log
+NaiveTrader/__pycache__
+orders_df.csv
+bnf_straddle/log/*
+bnf_straddle/__pycache__
+bnf_straddle/data/*
+NaiveTrader/.DS_Store
+NaiveTrader/.ipynb_checkpoints/kite-checkpoint.py
